@@ -3,7 +3,7 @@ import json
 import flask
 from flask import jsonify
 
-sys.path.insert(0, "../app")
+sys.path.insert(0, "../backend")
 
 try:
     from game import Game
