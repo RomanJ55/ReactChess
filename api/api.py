@@ -19,10 +19,10 @@ game.run_game()
 
 @app.route("/", methods=["GET"])
 def home():
-    return "<h1>Testing</h1>"
+    return "<h1>Chess Api</h1>"
 
 
-@app.route('/api/test', methods=['GET'])
+@app.route('/api/chess', methods=['GET'])
 def api_all():
     json_str = json.dumps(game, default=lambda x: x.__dict__, indent=2)
     return jsonify(json_str)

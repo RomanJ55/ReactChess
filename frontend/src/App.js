@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const result = await axios(`/api/test`);
+      const result = await axios(`/api/chess`);
       setItems(JSON.parse(result.data));
       setIsLoading(false);
     };

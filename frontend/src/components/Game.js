@@ -8,7 +8,10 @@ const Game = ({ items, isLoading }) => {
     <h3>Loading.....</h3>
   ) : (
     <div className="game">
-      <Timer timer={items.white_time} />
+      <div class="top-timer">
+        <Timer timer={items.white_time} />
+      </div>
+
       <Board board={items.board} rows={items.rows} columns={items.columns} />
       <div className="footer">
         <button className="gu-button">Give up</button>
