@@ -15,7 +15,6 @@ function App() {
       setIsLoading(false);
     };
     fetchItems();
-    console.log(items);
   }, []);
 
   return (

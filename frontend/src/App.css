@@ -15,6 +15,9 @@ body {
 
 .gu-button {
   width: 100px;
+  height: 40px;
+  color: red;
+  font-size: 20px;
 }
 
 .center {
@@ -30,7 +33,6 @@ body {
 }
 
 .game {
-  max-width: 70vw;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -38,23 +40,27 @@ body {
 }
 
 .board {
-  display: table;
-  table-layout: fixed;
-  width: 635px;
+  width: 720px;
+  transform: rotate(90deg);
 }
 
 .square {
-  background: rgb(255, 255, 255);
   border: 2px solid rgb(136, 127, 127);
   font-size: 30px;
   font-weight: bold;
-  height: 80px;
+  height: 90px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
   color: chartreuse;
-  width: 80px;
+  width: 90px;
+  transform: rotate(270deg);
+}
+
+.square:active {
+  color: aqua;
+  transition-duration: 1s;
 }
 
 header {
@@ -66,5 +72,5 @@ header img {
 }
 
 .top-timer {
-  padding-left: 500px;
+  padding-left: 600px;
 }

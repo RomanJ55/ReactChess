@@ -5,13 +5,12 @@ import Board from "./Board";
 
 const Game = ({ items, isLoading }) => {
   return isLoading ? (
-    <h3>Loading.....</h3>
+    <h3 className="center">Loading.....</h3>
   ) : (
     <div className="game">
-      <div class="top-timer">
+      <div className="top-timer">
         <Timer timer={items.white_time} />
       </div>
-
       <Board board={items.board} rows={items.rows} columns={items.columns} />
       <div className="footer">
         <button className="gu-button">Give up</button>
