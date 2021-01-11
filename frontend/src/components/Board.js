@@ -10,15 +10,27 @@ const Board = ({ board, rows, columns }) => {
       let type = -1;
       let imagePath = "/pieces/dummy.png";
       let colorNum = -1;
+      let player;
+      let selected;
 
       if (board[i][j]) {
         type = board[i][j].type;
-        colorNum = board[i][j].player === "white" ? 0 : 1;
+        selected = board[i][j].selected;
+        player = board[i][j].player;
+        colorNum = player === "white" ? 0 : 1;
         imagePath = "/pieces/" + colorNum + "0" + type + ".png";
       }
 
       squares.push(
-        <Square key={key} j={j} i={i} imagePath={imagePath} type={type} />
+        <Square
+          key={key}
+          j={j}
+          i={i}
+          imagePath={imagePath}
+          type={type}
+          selected={selected}
+          player={player}
+        />
       );
     }
   }

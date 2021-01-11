@@ -15,7 +15,7 @@ function App() {
       setIsLoading(false);
     };
     fetchItems();
-  }, []);
+  }, [items]);
 
   return (
     <div className="container">
