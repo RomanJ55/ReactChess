@@ -3,7 +3,6 @@ import json
 import threading
 import flask
 from flask import jsonify, request
-
 sys.path.insert(0, "../backend")
 
 try:
@@ -11,8 +10,10 @@ try:
 except ImportError:
     print('Import failed')
 
+
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+
 
 game = Game()
 # game.run_game()
