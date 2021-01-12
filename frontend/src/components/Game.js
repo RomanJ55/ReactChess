@@ -4,6 +4,7 @@ import Timer from "./Timer";
 import Board from "./Board";
 import Footer from "./Footer";
 import End from "./End";
+import Start from "./Start";
 
 const Game = () => {
   const [data, setData] = useState([]);
@@ -11,6 +12,7 @@ const Game = () => {
   const [squares, setSquares] = useState([[]]);
   const [turn, setTurn] = useState([]);
   const [running, setRunning] = useState([]);
+  const [winner, setWinner] = useState([]);
   // const [selectedSquare, setSelectedSquare] = useState(-1);
 
   useEffect(() => {
@@ -25,6 +27,7 @@ const Game = () => {
     setSquares(data.board);
     setTurn(data.turn);
     setRunning(data.game_running);
+    setWinner(data.is_winner);
   }, [data]);
 
   const giveUpHandler = () => {
@@ -74,8 +77,10 @@ const Game = () => {
             giveUpHandler={giveUpHandler}
           />
         </div>
-      ) : (
+      ) : winner ? (
         <End winner={data.winner} startGameHandler={startGameHandler} />
+      ) : (
+        <Start startGameHandler={startGameHandler} />
       )}
     </div>
   );
