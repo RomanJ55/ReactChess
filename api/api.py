@@ -95,4 +95,4 @@ def initiate_piece_move(x, y):
             pass
 
 
-app.run()
+app.run(threaded=True)
