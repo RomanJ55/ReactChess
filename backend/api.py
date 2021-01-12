@@ -8,7 +8,6 @@ from game import Game
 
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
 CORS(app)
 
 

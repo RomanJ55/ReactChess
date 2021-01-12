@@ -1,28 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
-const Timer = ({ timer }) => {
-  const [timerValue, setTimer] = useState(timer);
-  useEffect(() => {
-    setTimer(timer);
-  }, [timer]);
-
-  const timeoutHandler = () => {
-    axios
-      .post(`https://reactchess55.herokuapp.com/api/chess/startend`, {
-        command: "end",
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  if (timer > 0) {
-    let minutes = Math.floor(timerValue / 60);
-    let seconds = timerValue % 60;
+const Timer = ({ timer, timeoutHandler }) => {
+  if (timer >= 0) {
+    let minutes = Math.floor(timer / 60);
+    let seconds = timer % 60;
     return seconds > 9 ? (
       <h3>
         Time: {minutes}:{seconds}

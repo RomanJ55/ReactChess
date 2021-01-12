@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Turn = ({ turn }) => {
-  const [turnValue, setTurn] = useState("white");
-
-  useEffect(() => {
-    setTurn(turn);
-  }, [turn]);
-
-  const turnText = `${turnValue} Turn`;
+  const turnText = `${turn} Turn`;
   return <h2>{turnText.toUpperCase()}</h2>;
 };
 
