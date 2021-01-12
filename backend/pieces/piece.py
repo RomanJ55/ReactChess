@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from tkinter import PhotoImage
 
 
 class Piece(ABC):
@@ -27,9 +26,7 @@ class Piece(ABC):
         pass
 
     def draw_self(self, canvas, x, y):
-        img = PhotoImage(file=self.image)
-        canvas.create_image(x, y, image=img)
-        self.image_garbo = img
+        pass
 
     def get_type(self):
         return self.type
