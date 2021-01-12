@@ -9,7 +9,7 @@ const Timer = ({ timer }) => {
 
   const timeoutHandler = () => {
     axios
-      .post(`/api/chess/startend`, {
+      .post(`https://reactchess55.herokuapp.com/api/chess/startend`, {
         command: "end",
       })
       .then(function (response) {

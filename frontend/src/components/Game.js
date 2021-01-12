@@ -9,7 +9,7 @@ import End from "./End";
 const Game = ({ items, isLoading }) => {
   const startGameHandler = () => {
     axios
-      .post(`/api/chess/startend`, {
+      .post(`https://reactchess55.herokuapp.com/api/chess/startend`, {
         command: "start",
       })
       .then(function (response) {
@@ -22,7 +22,7 @@ const Game = ({ items, isLoading }) => {
 
   const giveUpHandler = () => {
     axios
-      .post(`/api/chess/startend`, {
+      .post(`https://reactchess55.herokuapp.com/api/chess/startend`, {
         command: "end",
       })
       .then(function (response) {

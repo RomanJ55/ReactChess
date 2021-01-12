@@ -6,7 +6,7 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
 
   const clickHandler = () => {
     axios
-      .post(`/api/chess/post`, {
+      .post(`https://reactchess55.herokuapp.com/api/chess/post`, {
         x: i,
         y: j,
         player: player,

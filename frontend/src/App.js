@@ -10,7 +10,9 @@ function App() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const result = await axios(`/api/chess`);
+      const result = await axios(
+        `https://reactchess55.herokuapp.com/api/chess`
+      );
       setItems(JSON.parse(result.data));
       setIsLoading(false);
     };
