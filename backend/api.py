@@ -91,4 +91,5 @@ def initiate_piece_move(x, y):
             pass
 
 
-app.run(threaded=True)
+if __name__ == '__main__':
+    app.run()
