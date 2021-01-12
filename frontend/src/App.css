@@ -5,7 +5,13 @@
 
 html,
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: system-ui;
+  background-image: url("images/wood.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  color: white;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1.3px;
 }
 
 .container {
@@ -13,11 +19,19 @@ body {
   padding: 0 20px;
 }
 
+.se-button {
+  font-size: 50px;
+  background: repeating-linear-gradient(45deg, #b1b1b1, transparent 100px);
+  background-color: honeydew;
+}
+
 .gu-button {
   width: 100px;
   height: 40px;
   color: red;
   font-size: 20px;
+  background: repeating-linear-gradient(45deg, #b1b1b1, transparent 100px);
+  background-color: honeydew;
 }
 
 .center {
@@ -37,6 +51,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top: 20px;
 }
 
 .board {
@@ -62,6 +77,14 @@ body {
   transition-duration: 1s;
 }
 
+.start {
+  margin-top: 40px;
+  height: 600px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
   height: 80px;
 }
@@ -71,5 +94,6 @@ header img {
 }
 
 .top-timer {
-  padding-left: 600px;
+  display: flex;
+  justify-content: flex-end;
 }

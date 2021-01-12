@@ -12,7 +12,7 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
         player: player,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -27,7 +27,7 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
     <button
       className="square"
       style={{
-        background: (j + i) % 2 ? "black" : "white",
+        background: (j + i) % 2 ? "white" : "black",
         border: isSelected
           ? "4px solid rgb(255,255,0)"
           : "2px solid rgb(136, 127, 127)",

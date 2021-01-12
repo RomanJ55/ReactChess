@@ -19,6 +19,9 @@ const Board = ({ board, rows, columns }) => {
         player = board[i][j].player;
         colorNum = player === "white" ? 0 : 1;
         imagePath = "/pieces/" + colorNum + "0" + type + ".png";
+        if (type === 5 && board[i][j].incheck) {
+          imagePath = "/pieces/" + colorNum + "0" + type + "c.png";
+        }
       }
 
       squares.push(

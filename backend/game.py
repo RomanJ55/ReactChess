@@ -1,4 +1,5 @@
 import copy
+import threading
 from pieces.pawn import Pawn
 from pieces.king import King
 from pieces.knight import Knight
@@ -62,6 +63,16 @@ class Game:
                 king.mate(self)
             else:
                 self.stop_game("Draw...")
+
+    def update_timer(self):
+        if self.turn == "white":
+            self.white_time -= 1
+        else:
+            self.black_time -= 1
+        try:
+            threading.Timer(1.0, self.update_timer).start()
+        except RuntimeError:
+            pass
 
     def is_checkmate(self):
         for row in self.board:
@@ -181,15 +192,15 @@ class Game:
             self.board[castle_move[1][0]][castle_move[1][1]] = king_piece
 
             if castle_move[2] == "queen":
-                temp = self.board[king_piece.x-2][king_piece.y]
-                temp.move((king_piece.x+1, king_piece.y))
-                self.board[king_piece.x+1][king_piece.y] = temp
-                self.board[king_piece.x-2][king_piece.y] = 0
-            if castle_move[2] == "king":
-                temp = self.board[king_piece.x+1][king_piece.y]
+                temp = self.board[king_piece.x+2][king_piece.y]
                 temp.move((king_piece.x-1, king_piece.y))
                 self.board[king_piece.x-1][king_piece.y] = temp
-                self.board[king_piece.x+1][king_piece.y] = 0
+                self.board[king_piece.x+2][king_piece.y] = 0
+            if castle_move[2] == "king":
+                temp = self.board[king_piece.x-1][king_piece.y]
+                temp.move((king_piece.x+1, king_piece.y))
+                self.board[king_piece.x+1][king_piece.y] = temp
+                self.board[king_piece.x-1][king_piece.y] = 0
             self.change_turn()
         else:
             king_piece.unselect()
@@ -199,8 +210,8 @@ class Game:
         self.board[0][0] = Rook(0, 0, "black")
         self.board[1][0] = Knight(1, 0, "black")
         self.board[2][0] = Bishop(2, 0, "black")
-        self.board[3][0] = Queen(3, 0, "black")
-        self.board[4][0] = King(4, 0, "black")
+        self.board[4][0] = Queen(4, 0, "black")
+        self.board[3][0] = King(3, 0, "black")
         self.board[5][0] = Bishop(5, 0, "black")
         self.board[6][0] = Knight(6, 0, "black")
         self.board[7][0] = Rook(7, 0, "black")
@@ -211,8 +222,8 @@ class Game:
         self.board[0][7] = Rook(0, 7, "white")
         self.board[1][7] = Knight(1, 7, "white")
         self.board[2][7] = Bishop(2, 7, "white")
-        self.board[3][7] = Queen(3, 7, "white")
-        self.board[4][7] = King(4, 7, "white")
+        self.board[4][7] = Queen(4, 7, "white")
+        self.board[3][7] = King(3, 7, "white")
         self.board[5][7] = Bishop(5, 7, "white")
         self.board[6][7] = Knight(6, 7, "white")
         self.board[7][7] = Rook(7, 7, "white")
