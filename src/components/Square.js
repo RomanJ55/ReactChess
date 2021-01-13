@@ -1,7 +1,10 @@
 import React from "react";
+import { zoomInLeft, zoomInDown } from "react-animations";
+import { StyleSheet, css } from "aphrodite";
 import axios from "axios";
 
 const Square = ({ j, i, imagePath, type, selected, player }) => {
+  let cl = "square";
   const clickHandler = () => {
     axios
       .post(`https://chessapi55.herokuapp.com/api/chess/post`, {
@@ -17,9 +20,20 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
       });
   };
 
+  const styles = StyleSheet.create({
+    bounce: {
+      animationName: zoomInLeft,
+      animationDuration: "1.3s",
+    },
+    jump: {
+      animationName: zoomInDown,
+      animationDuration: "2s",
+    },
+  });
+
   return (
     <button
-      className="square"
+      className={[css(styles.bounce), cl].join(" ")}
       style={{
         background: (j + i) % 2 ? "white" : "black",
         border: selected
@@ -28,7 +42,11 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
       }}
       onClick={clickHandler}
     >
-      <img src={process.env.PUBLIC_URL + imagePath} alt={type} />
+      <img
+        className={css(styles.jump)}
+        src={process.env.PUBLIC_URL + imagePath}
+        alt={type}
+      />
     </button>
   );
 };

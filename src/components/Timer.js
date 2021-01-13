@@ -4,6 +4,7 @@ const Timer = ({ timer, timeoutHandler }) => {
   if (timer >= 0) {
     let minutes = Math.floor(timer / 60);
     let seconds = timer % 60;
+
     return seconds > 9 ? (
       <h3>
         Time: {minutes}:{seconds}

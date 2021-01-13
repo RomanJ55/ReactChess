@@ -1,8 +1,17 @@
 import React from "react";
+import { zoomInUp } from "react-animations";
+import { StyleSheet, css } from "aphrodite";
 
 const Turn = ({ turn }) => {
+  const styles = StyleSheet.create({
+    bounce: {
+      animationName: zoomInUp,
+      animationDuration: "1s",
+    },
+  });
+
   const turnText = `${turn} Turn`;
-  return <h2>{turnText.toUpperCase()}</h2>;
+  return <h2 className={css(styles.bounce)}>{turnText.toUpperCase()}</h2>;
 };
 
 export default Turn;
