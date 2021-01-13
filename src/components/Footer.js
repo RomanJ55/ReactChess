@@ -9,7 +9,7 @@ const Footer = ({ turn, whiteTime, giveUpHandler }) => {
         Give up
       </button>
       <Turn turn={turn} />
-      <Timer timer={whiteTime} timeoutHandler={giveUpHandler} />
+      {/* <Timer timer={whiteTime} timeoutHandler={giveUpHandler} /> */}
     </div>
   );
 };

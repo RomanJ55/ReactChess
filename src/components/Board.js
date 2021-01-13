@@ -2,7 +2,7 @@ import React from "react";
 import Square from "./Square";
 
 const Board = ({ squares, rows, columns }) => {
-  let board = [[]];
+  let board = [];
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {

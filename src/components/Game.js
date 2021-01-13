@@ -17,7 +17,7 @@ const Game = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const result = await axios(
+      const result = await axios.get(
         `https://reactchess55.herokuapp.com/api/chess`
       );
       setData(JSON.parse(result.data));
@@ -67,9 +67,9 @@ const Game = () => {
       ) : null}
       {running ? (
         <div className="game">
-          <div className="top-timer">
+          {/* <div className="top-timer">
             <Timer timer={data.black_time} timeoutHandler={giveUpHandler} />
-          </div>
+          </div> */}
           <Board squares={squares} rows={data.rows} columns={data.columns} />
           <Footer
             turn={turn}
