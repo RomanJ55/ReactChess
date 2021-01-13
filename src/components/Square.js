@@ -1,5 +1,5 @@
 import React from "react";
-import { zoomInLeft, zoomInDown } from "react-animations";
+import { zoomIn, zoomInDown, flipInY } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
 import axios from "axios";
 
@@ -21,19 +21,24 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
   };
 
   const styles = StyleSheet.create({
-    bounce: {
-      animationName: zoomInLeft,
-      animationDuration: "1.3s",
+    zoom: {
+      animationName: zoomIn,
+      animationDuration: "1s",
     },
-    jump: {
+    zoomImg: {
       animationName: zoomInDown,
-      animationDuration: "2s",
+      animationDuration: "1.8s",
+    },
+    flip: {
+      animationName: flipInY,
+      animationDuration: "1s",
     },
   });
 
   return (
     <button
-      className={[css(styles.bounce), cl].join(" ")}
+      className={[css(styles.zoom), cl].join(" ")}
+      // className="square"
       style={{
         background: (j + i) % 2 ? "white" : "black",
         border: selected
@@ -43,7 +48,7 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
       onClick={clickHandler}
     >
       <img
-        className={css(styles.jump)}
+        className={css(styles.zoomImg)}
         src={process.env.PUBLIC_URL + imagePath}
         alt={type}
       />

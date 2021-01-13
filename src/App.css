@@ -69,13 +69,11 @@ body {
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  color: chartreuse;
   width: 90px;
   transform: rotate(270deg);
 }
 
 .square:active {
-  color: aqua;
   transition-duration: 1s;
 }
 

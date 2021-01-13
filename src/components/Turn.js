@@ -6,7 +6,7 @@ const Turn = ({ turn }) => {
   const styles = StyleSheet.create({
     bounce: {
       animationName: zoomInUp,
-      animationDuration: "1s",
+      animationDuration: "2.5s",
     },
   });
 
