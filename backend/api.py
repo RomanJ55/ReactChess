@@ -1,4 +1,3 @@
-import sys
 import json
 import threading
 import flask
@@ -12,14 +11,8 @@ CORS(app)
 
 
 game = Game()
-# game.run_game()
 
 thread = threading.Thread(target=game.update_timer)
-
-
-@app.route("/", methods=["GET"])
-def home():
-    return "<h1>Chess Api</h1>"
 
 
 @app.route('/api/chess', methods=['GET'])
@@ -35,13 +28,10 @@ def handle_post():
     x, y = result["x"], result["y"]
     if len(result) > 2:
         piece_color = result["player"]
-    # print(x, y, piece_type)
     if piece_color:
         if piece_color == game.turn:
             game.unselect_all()
             game.board[x][y].select()
-            # moves = game.board[x][y].get_valid_moves(game)
-            # return jsonify(moves)
         else:
             initiate_piece_move(x, y)
     else:
@@ -56,10 +46,10 @@ def handle_startend():
 
     if command == "start":
         game.run_game()
-        # try:
-        #     thread.start()
-        # except RuntimeError:
-        #     pass
+        try:
+            thread.start()
+        except RuntimeError:
+            pass
     else:
         game.stop_game("black" if game.turn == "white" else "white")
     return f"Game {command}"
@@ -86,11 +76,11 @@ def initiate_piece_move(x, y):
                 else:
                     game.handle_castle_move(
                         piece, valid_castle_moves[1])
-        # try:
-        #     thread.start()
-        # except RuntimeError:
-        #     pass
+        try:
+            thread.start()
+        except RuntimeError:
+            pass
 
 
 if __name__ == '__main__':
-    app.run(threaded=False)
+    app.run()
