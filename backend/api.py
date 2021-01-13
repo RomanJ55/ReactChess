@@ -56,10 +56,10 @@ def handle_startend():
 
     if command == "start":
         game.run_game()
-        try:
-            thread.start()
-        except RuntimeError:
-            pass
+        # try:
+        #     thread.start()
+        # except RuntimeError:
+        #     pass
     else:
         game.stop_game("black" if game.turn == "white" else "white")
     return f"Game {command}"
@@ -86,10 +86,10 @@ def initiate_piece_move(x, y):
                 else:
                     game.handle_castle_move(
                         piece, valid_castle_moves[1])
-        try:
-            thread.start()
-        except RuntimeError:
-            pass
+        # try:
+        #     thread.start()
+        # except RuntimeError:
+        #     pass
 
 
 if __name__ == '__main__':
