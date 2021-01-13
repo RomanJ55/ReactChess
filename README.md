@@ -22,7 +22,9 @@ Not working:
 
 ---
 
-# Check it out here(react may freak out if too many connections):
+# Check it out here:
+(react may freak out if too many connections)
+
 
 https://romanj55.github.io/ReactChess/
 
