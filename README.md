@@ -31,6 +31,8 @@ https://romanj55.github.io/ReactChess/
 Future todos:
   - Sounds
   - AI
+  
+ ---
 
 ![demo](assets/000.jpg "demo1")
 ![demo2](assets/001.jpg "demo2")
