@@ -56,7 +56,7 @@ const Game = ({ items }) => {
           <Board squares={squares} rows={items.rows} columns={items.columns} />
           <Footer
             turn={turn}
-            whiteTime={items.white_time}
+            whiteTime={items.white_time + 2}
             giveUpHandler={giveUpHandler}
           />
         </div>
