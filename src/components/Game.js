@@ -6,9 +6,7 @@ import Footer from "./Footer";
 import End from "./End";
 import Start from "./Start";
 
-const Game = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Game = ({ items }) => {
   const [squares, setSquares] = useState([[]]);
   const [turn, setTurn] = useState([]);
   const [running, setRunning] = useState([]);
@@ -16,28 +14,19 @@ const Game = () => {
   // const [selectedSquare, setSelectedSquare] = useState(-1);
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const result = await axios.get(
-        `https://reactchess55.herokuapp.com/api/chess`
-      );
-      setData(JSON.parse(result.data));
-      setLoading(false);
-    };
-    fetchItems();
-    setSquares(data.board);
-    setTurn(data.turn);
-    setRunning(data.game_running);
-    setWinner(data.is_winner);
-  }, [data]);
+    setSquares(items.board);
+    setTurn(items.turn);
+    setRunning(items.game_running);
+    setWinner(items.is_winner);
+  }, [items.board, items.turn, items.game_running, items.is_winner]);
 
   const giveUpHandler = () => {
     axios
-      .post(`https://reactchess55.herokuapp.com/api/chess/startend`, {
+      .post(`https://chessapi55.herokuapp.com/api/chess/startend`, {
         command: "end",
       })
       .then(function (response) {
         console.log(response);
-        // setIsWinner(data.is_winner);
       })
       .catch(function (error) {
         console.log(error);
@@ -46,12 +35,11 @@ const Game = () => {
 
   const startGameHandler = () => {
     axios
-      .post(`https://reactchess55.herokuapp.com/api/chess/startend`, {
+      .post(`https://chessapi55.herokuapp.com/api/chess/startend`, {
         command: "start",
       })
       .then(function (response) {
         console.log(response);
-        // setIsWinner(data.is_winner);
       })
       .catch(function (error) {
         console.log(error);
@@ -60,25 +48,20 @@ const Game = () => {
 
   return (
     <div>
-      {loading ? (
-        <h3 className="center" style={{ marginTop: 200, fontSize: 40 }}>
-          Loading.....
-        </h3>
-      ) : null}
       {running ? (
         <div className="game">
-          {/* <div className="top-timer">
-            <Timer timer={data.black_time} timeoutHandler={giveUpHandler} />
-          </div> */}
-          <Board squares={squares} rows={data.rows} columns={data.columns} />
+          <div className="top-timer">
+            <Timer timer={items.black_time} timeoutHandler={giveUpHandler} />
+          </div>
+          <Board squares={squares} rows={items.rows} columns={items.columns} />
           <Footer
             turn={turn}
-            whiteTime={data.white_time}
+            whiteTime={items.white_time}
             giveUpHandler={giveUpHandler}
           />
         </div>
       ) : winner ? (
-        <End winner={data.winner} startGameHandler={startGameHandler} />
+        <End winner={items.winner} startGameHandler={startGameHandler} />
       ) : (
         <Start startGameHandler={startGameHandler} />
       )}

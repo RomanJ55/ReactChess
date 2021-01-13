@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Square from "./Square";
 
 const Board = ({ squares, rows, columns }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(squares);
+  }, [squares]);
+
   let board = [];
 
   for (let i = 0; i < rows; i++) {
@@ -13,14 +19,14 @@ const Board = ({ squares, rows, columns }) => {
       let player;
       let selected;
 
-      if (!squares === undefined) {
-        if (squares[i][j]) {
-          type = squares[i][j].type;
-          selected = squares[i][j].selected;
-          player = squares[i][j].player;
+      if (data !== undefined && data.length > 1) {
+        if (data[i][j]) {
+          type = data[i][j].type;
+          selected = data[i][j].selected;
+          player = data[i][j].player;
           colorNum = player === "white" ? 0 : 1;
           imagePath = "/pieces/" + colorNum + "0" + type + ".png";
-          if (type === 5 && squares[i][j].incheck) {
+          if (type === 5 && data[i][j].incheck) {
             imagePath = "/pieces/" + colorNum + "0" + type + "c.png";
           }
         }
