@@ -5,7 +5,8 @@ Using my own Python-Chess game project as the backend
 - https://github.com/RomanJ55/Chess-Game
 
 Added Flask and gunicorn for the server/api
-  - backend repo: https://github.com/RomanJ55/backend (hosted on heroku)
+
+- backend repo: https://github.com/RomanJ55/backend (hosted on heroku)
 
 ---
 
@@ -23,18 +24,21 @@ Not working:
 ---
 
 # Check it out here: https://romanj55.github.io/ReactChess/
-  - react may freak out if too many connections
 
- - Works on mobile browsers too if you enable Desktop-mode:
-  https://www.cinchshare.com/wp-content/uploads/2019/09/chrome-desktop-mode-android-2.jpg
+- react may freak out if too many connections
+
+- Works on mobile browsers too if you enable Desktop-mode:
+  https://cutt.ly/Vjm44AR
 
 ---
 
-Future todos:
-  - Sounds
-  - AI
-  
- ---
+# Future todos:
+
+- Sounds
+- Support multiple games(game rooms)
+- AI
+
+---
 
 ![demo](assets/000.jpg "demo1")
 ![demo2](assets/001.jpg "demo2")
