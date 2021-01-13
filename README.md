@@ -22,14 +22,11 @@ Not working:
 
 ---
 
-# Check it out here:
-(react may freak out if too many connections)
+# Check it out here: https://romanj55.github.io/ReactChess/
+  - react may freak out if too many connections
 
-
-https://romanj55.github.io/ReactChess/
-
-Works on mobile browsers too if you enable Desktop-mode:
-https://www.cinchshare.com/wp-content/uploads/2019/09/chrome-desktop-mode-android-2.jpg
+ - Works on mobile browsers too if you enable Desktop-mode:
+  https://www.cinchshare.com/wp-content/uploads/2019/09/chrome-desktop-mode-android-2.jpg
 
 ---
 
