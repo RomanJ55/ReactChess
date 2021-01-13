@@ -4,6 +4,8 @@ Using my own Python-Chess game project as the backend
 
 - https://github.com/RomanJ55/Chess-Game
 
+Added Flask and gunicorn for the server/api
+
 ---
 
 Fully functional chess game following the standard chess rules: https://en.wikipedia.org/wiki/Rules_of_chess
