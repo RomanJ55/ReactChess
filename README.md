@@ -5,7 +5,7 @@ Using my own Python-Chess game project as the backend
 - https://github.com/RomanJ55/Chess-Game
 
 Added Flask and gunicorn for the server/api
-  - backend: https://github.com/RomanJ55/backend
+  - backend repo: https://github.com/RomanJ55/backend (hosted on heroku)
 
 ---
 
