@@ -16,10 +16,12 @@ Fully functional chess game following the standard chess rules: https://en.wikip
 
 ---
 
-Not working:
+Not working/bugs:
 
 - en passant moves https://support.chess.com/article/683-what-is-en-passant
   (I didn't know they existed...)
+
+- Timers reset when the user reloads the page
 
 ---
 
