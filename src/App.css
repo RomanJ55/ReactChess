@@ -50,11 +50,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 20px;
+  margin-top: 40px;
+  background-color: brown;
+  padding: 0 80px;
 }
 
 .board {
-  width: 720px;
+  width: 715px;
 }
 
 .square {
@@ -81,7 +83,7 @@ body {
 }
 
 header {
-  height: 80px;
+  height: 65px;
 }
 
 header img {
