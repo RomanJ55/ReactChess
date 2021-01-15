@@ -27,8 +27,6 @@ Not working/bugs:
 
 # Check it out here: https://romanj55.github.io/ReactChess/
 
-- react may freak out if too many connections
-
 - Works on mobile browsers too if you enable Desktop-mode:
   https://cutt.ly/Vjm44AR
 
@@ -37,7 +35,7 @@ Not working/bugs:
 # Future todos:
 
 - Sounds
-- Support multiple games(game rooms)
+- Support multiple games(sockets.io, game rooms etc.)
 - AI
 
 ---
