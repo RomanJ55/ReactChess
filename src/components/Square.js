@@ -3,7 +3,7 @@ import { zoomIn, zoomInDown, rubberBand } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
 import axios from "axios";
 
-const Square = ({ j, i, imagePath, type, selected, player }) => {
+const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
   let cl = "square";
   const clickHandler = () => {
     axios
@@ -13,7 +13,9 @@ const Square = ({ j, i, imagePath, type, selected, player }) => {
         player: player,
       })
       .then(function (response) {
-        console.log(response.data);
+        if (response.data === "Done!") {
+          updateData();
+        }
       })
       .catch(function (error) {
         console.log(error);

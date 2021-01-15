@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Square from "./Square";
 
-const Board = ({ squares, rows, columns }) => {
+const Board = ({ squares, rows, columns, updateData }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const Board = ({ squares, rows, columns }) => {
           type={type}
           selected={selected}
           player={player}
+          updateData={updateData}
         />
       );
     }

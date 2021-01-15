@@ -30,6 +30,7 @@ body {
   font-size: 20px;
   background: repeating-linear-gradient(45deg, #b1b1b1, transparent 100px);
   background-color: honeydew;
+  -webkit-text-stroke-width: 0.3px;
 }
 
 .center {

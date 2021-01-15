@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import End from "./End";
 import Start from "./Start";
 
-const Game = ({ items }) => {
+const Game = ({ items, updateData }) => {
   const [squares, setSquares] = useState([[]]);
   const [turn, setTurn] = useState([]);
   const [running, setRunning] = useState([]);
@@ -26,7 +26,9 @@ const Game = ({ items }) => {
         command: "end",
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data === "Game end") {
+          updateData();
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -39,7 +41,9 @@ const Game = ({ items }) => {
         command: "start",
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data === "Game start") {
+          updateData();
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -47,16 +51,26 @@ const Game = ({ items }) => {
   };
 
   return (
-    <div>
+    <>
       {running ? (
         <div className="game">
           <div className="top-timer">
-            <Timer timer={items.black_time} timeoutHandler={giveUpHandler} />
+            <Timer
+              timer={items.timer_save}
+              timeoutHandler={giveUpHandler}
+              run={turn === "white" ? false : true}
+            />
           </div>
-          <Board squares={squares} rows={items.rows} columns={items.columns} />
+          <Board
+            squares={squares}
+            rows={items.rows}
+            columns={items.columns}
+            updateData={updateData}
+          />
           <Footer
             turn={turn}
-            whiteTime={items.white_time + 2}
+            whiteTime={items.timer_save + 2}
+            run={turn === "white" ? true : false}
             giveUpHandler={giveUpHandler}
           />
         </div>
@@ -65,7 +79,7 @@ const Game = ({ items }) => {
       ) : (
         <Start startGameHandler={startGameHandler} />
       )}
-    </div>
+    </>
   );
 };
 
