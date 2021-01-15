@@ -56,7 +56,7 @@ const Game = ({ items, updateData }) => {
         <div className="game">
           <div className="top-timer">
             <Timer
-              timer={items.timer_save}
+              timer={items.timer}
               timeoutHandler={giveUpHandler}
               run={turn === "white" ? false : true}
             />
@@ -69,7 +69,7 @@ const Game = ({ items, updateData }) => {
           />
           <Footer
             turn={turn}
-            whiteTime={items.timer_save + 2}
+            whiteTime={items.timer + 2}
             run={turn === "white" ? true : false}
             giveUpHandler={giveUpHandler}
           />
