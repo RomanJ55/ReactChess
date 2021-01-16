@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { zoomInRight } from "react-animations";
+import { StyleSheet, css } from "aphrodite";
 
 const Timer = ({ timer, timeoutHandler, run }) => {
   const [time, setTime] = useState(timer);
@@ -17,16 +19,23 @@ const Timer = ({ timer, timeoutHandler, run }) => {
     return () => clearInterval(interval);
   }, [isOn, time, run]);
 
+  const styles = StyleSheet.create({
+    slide: {
+      animationName: zoomInRight,
+      animationDuration: "2.6s",
+    },
+  });
+
   if (time >= 0) {
     let minutes = Math.floor(time / 60);
     let seconds = time % 60;
 
     return seconds > 9 ? (
-      <h3>
+      <h3 className={css(styles.slide)}>
         Time: {minutes}:{seconds}
       </h3>
     ) : (
-      <h3>
+      <h3 className={css(styles.slide)}>
         Time: {minutes}:0{seconds}
       </h3>
     );
