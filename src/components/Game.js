@@ -20,6 +20,13 @@ const Game = ({ items, updateData }) => {
     setWinner(items.is_winner);
   }, [items.board, items.turn, items.game_running, items.is_winner]);
 
+  if (localStorage.getItem("b_time") === null) {
+    localStorage.setItem("b_time", JSON.stringify(items.timer));
+  }
+  if (localStorage.getItem("w_time") === null) {
+    localStorage.setItem("w_time", JSON.stringify(items.timer + 2));
+  }
+
   const giveUpHandler = () => {
     axios
       .post(`https://chessapi55.herokuapp.com/api/chess/startend`, {
@@ -48,6 +55,8 @@ const Game = ({ items, updateData }) => {
       .catch(function (error) {
         console.log(error);
       });
+    localStorage.removeItem("b_time");
+    localStorage.removeItem("w_time");
   };
 
   return (
@@ -56,7 +65,7 @@ const Game = ({ items, updateData }) => {
         <div className="game">
           <div className="top-timer">
             <Timer
-              timer={items.timer}
+              position="top"
               timeoutHandler={giveUpHandler}
               run={turn === "white" ? false : true}
             />
@@ -69,7 +78,7 @@ const Game = ({ items, updateData }) => {
           />
           <Footer
             turn={turn}
-            whiteTime={items.timer + 2}
+            position="bottom"
             run={turn === "white" ? true : false}
             giveUpHandler={giveUpHandler}
           />

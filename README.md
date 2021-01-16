@@ -13,15 +13,14 @@ Added Flask and gunicorn for the server/api
 Fully functional chess game following the standard chess rules: https://en.wikipedia.org/wiki/Rules_of_chess
 
 - Time is set to 15 Minutes by default
+- Timers persist through refresh
 
 ---
 
-Not working/bugs:
+Not working:
 
 - en passant moves https://support.chess.com/article/683-what-is-en-passant
   (I didn't know they existed...)
-
-- Timers reset when the user reloads the page
 
 ---
 
@@ -40,4 +39,4 @@ Not working/bugs:
 
 ---
 
- ![Start_screen](assets/001.jpg "Start_screen")
+![Start_screen](assets/001.jpg "Start_screen")

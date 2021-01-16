@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { zoomInRight } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
 
-const Timer = ({ timer, timeoutHandler, run }) => {
-  const [time, setTime] = useState(timer);
+const Timer = ({ position, timeoutHandler, run }) => {
+  const [time, setTime] = useState(
+    JSON.parse(localStorage.getItem(position === "top" ? "b_time" : "w_time"))
+  );
   const [isOn, setIsOn] = useState(run);
 
   useEffect(() => {
@@ -11,13 +13,23 @@ const Timer = ({ timer, timeoutHandler, run }) => {
     let interval = null;
     if (isOn) {
       interval = setInterval(() => {
-        setTime((time) => time - 1);
+        let storedTime = JSON.parse(
+          localStorage.getItem(position === "top" ? "b_time" : "w_time")
+        );
+        setTime(storedTime - 1);
       }, 1000);
     } else if (!isOn && time !== 0) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [isOn, time, run]);
+  }, [isOn, time, run, position]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      position === "top" ? "b_time" : "w_time",
+      JSON.stringify(time)
+    );
+  }, [position, time]);
 
   const styles = StyleSheet.create({
     slide: {
