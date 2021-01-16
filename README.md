@@ -39,3 +39,5 @@ Not working/bugs:
 - AI
 
 ---
+
+ ![Start_screen](assets/001.jpg "Start_screen")
