@@ -6,10 +6,18 @@
 html,
 body {
   font-family: system-ui;
-  background-color: darkgray;
-  color: white;
+  color: #ff9800;
   -webkit-text-stroke-color: black;
-  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-width: 0.9px;
+  background-image: radial-gradient(
+    circle,
+    #a5c4f2,
+    #8e9dbf,
+    #73788e,
+    #565661,
+    #373737
+  );
+  background-attachment: fixed;
 }
 
 .container {
@@ -19,17 +27,21 @@ body {
 
 .se-button {
   font-size: 50px;
-  background: repeating-linear-gradient(45deg, #b1b1b1, transparent 100px);
-  background-color: honeydew;
+  background-image: linear-gradient(
+    to right,
+    #fdfbde,
+    #f7e8ab,
+    #f6d278,
+    #f9b846,
+    #ff9b00
+  );
 }
 
 .gu-button {
   width: 100px;
   height: 40px;
-  color: red;
   font-size: 20px;
   background: repeating-linear-gradient(45deg, #b1b1b1, transparent 100px);
-  background-color: honeydew;
   -webkit-text-stroke-width: 0.3px;
 }
 
@@ -51,8 +63,15 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 40px;
-  background-color: brown;
   padding: 0 80px;
+  background-image: linear-gradient(
+    to right top,
+    #a52a2a,
+    #7c202a,
+    #541923,
+    #2d1218,
+    #000000
+  );
 }
 
 .board {
@@ -93,4 +112,22 @@ header img {
 .top-timer {
   display: flex;
   justify-content: flex-end;
+}
+
+h1,
+h2,
+h3 {
+  background-image: linear-gradient(
+    to right,
+    #fdfbde,
+    #f7e8ab,
+    #f6d278,
+    #f9b846,
+    #ff9b00
+  );
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
