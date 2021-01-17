@@ -1,25 +1,23 @@
 import React from "react";
+import { socket } from "../socket";
 import { zoomIn, zoomInDown, rubberBand } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
-import axios from "axios";
 
 const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
   let cl = "square";
+
   const clickHandler = () => {
-    axios
-      .post(`https://chessapi55.herokuapp.com/api/chess/post`, {
-        x: i,
-        y: j,
-        player: player,
-      })
-      .then(function (response) {
-        if (response.data === "Done!") {
-          updateData();
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    socket.emit("clicked", {
+      x: i,
+      y: j,
+      player: player,
+    });
+    socket.on("clicked", (arg) => {
+      if (arg === "Done!") {
+        socket.off("clicked");
+        updateData();
+      }
+    });
   };
 
   const styles = StyleSheet.create({

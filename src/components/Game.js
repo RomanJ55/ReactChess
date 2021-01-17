@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { socket } from "../socket";
 import Timer from "./Timer";
 import Board from "./Board";
 import Footer from "./Footer";
@@ -28,33 +28,33 @@ const Game = ({ items, updateData }) => {
   }
 
   const giveUpHandler = () => {
-    axios
-      .post(`https://chessapi55.herokuapp.com/api/chess/startend`, {
-        command: "end",
-      })
-      .then(function (response) {
-        if (response.data === "Game end") {
-          updateData();
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    socket.emit("gameEnd");
+    socket.on("gameEnd", (arg) => {
+      if (arg === "game ended!") {
+        socket.off("gameEnd");
+        updateData();
+      }
+    });
   };
 
   const startGameHandler = () => {
-    axios
-      .post(`https://chessapi55.herokuapp.com/api/chess/startend`, {
-        command: "start",
-      })
-      .then(function (response) {
-        if (response.data === "Game start") {
-          updateData();
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    };
+    const roomNumber = getRandomInt(1, 999);
+
+    const client = { username: "RomJ", room: `abc${roomNumber}` };
+
+    socket.emit("join", client);
+    socket.emit("gameStart");
+    socket.on("gameStart", (arg) => {
+      if (arg === "game started!") {
+        socket.off("gameStart");
+        updateData();
+      }
+    });
     localStorage.removeItem("b_time");
     localStorage.removeItem("w_time");
   };

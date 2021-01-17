@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { socket } from "./socket";
 import "./App.css";
 import Header from "./components/Header";
 import Game from "./components/Game";
@@ -8,14 +8,21 @@ function App() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchItems = async () => {
-    const result = await axios(`https://chessapi55.herokuapp.com/api/chess`);
-    setItems(JSON.parse(result.data));
-    setIsLoading(false);
+  const fetch = () => {
+    socket.emit("data");
+
+    socket.on("data", (arg) => {
+      const res = JSON.parse(arg);
+      setItems(res);
+      setIsLoading(false);
+    });
   };
 
   useEffect(() => {
-    fetchItems();
+    fetch();
+    return () => {
+      socket.off("data");
+    };
   }, []);
 
   return (
@@ -26,7 +33,7 @@ function App() {
           Loading.....
         </h3>
       ) : (
-        <Game items={items} updateData={fetchItems} />
+        <Game items={items} updateData={fetch} />
       )}
     </div>
   );
