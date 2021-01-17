@@ -1,4 +1,4 @@
-# Chess Game with React as the frontend and Python in the backend  https://romanj55.github.io/ReactChess/
+# Chess Game with React as the frontend and Python in the backend https://romanj55.github.io/ReactChess/
 
 Using my own Python-Chess game project as the backend
 
@@ -34,7 +34,6 @@ Not working:
 # Future todos:
 
 - Sounds
-- Support multiple games(sockets.io, game rooms etc.)
 - AI
 
 ---
