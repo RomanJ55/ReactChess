@@ -19,8 +19,6 @@ Fully functional chess game following the standard chess rules: https://en.wikip
 
 # Check it out here: https://romanj55.github.io/ReactChess/
 
-- Works well on mobile devices!
-
 ---
 
 # Future todos:
