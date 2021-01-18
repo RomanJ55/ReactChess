@@ -25,23 +25,25 @@ const Start = ({
         defaultValue="Choose a Username (required)"
         onFocus={(e) => (e.target.value = "")}
         onChange={nameInputChangeHandler}
+        style={{ marginTop: 20 }}
       />
+      <button
+        className="se-button"
+        onClick={startGameHandler}
+        style={{ marginTop: 5 }}
+      >
+        Create new room
+      </button>
       <div className="start-footer">
+        <h2>Have a room code?</h2>
         <input
           className="name-input"
-          defaultValue="Enter a room-code"
+          defaultValue="Enter room code"
           onFocus={(e) => (e.target.value = "")}
           onChange={codeInputChangeHandler}
         />
         <button className="se-button" onClick={joinGameHandler}>
           Join a room
-        </button>
-        <button
-          className="se-button"
-          onClick={startGameHandler}
-          style={{ marginTop: 30 }}
-        >
-          Create new room
         </button>
       </div>
     </div>

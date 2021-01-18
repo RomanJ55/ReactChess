@@ -128,7 +128,25 @@ header img {
 
 .start-footer {
   display: grid;
-  margin-top: 20px;
+  margin-top: 10px;
+  background-image: linear-gradient(
+    to left bottom,
+    #f8fbff,
+    #ccd0d4,
+    #a2a6ab,
+    #797e83,
+    #53585e
+  );
+  border-style: double;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.start-footer h2 {
+  margin: 0;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 34px;
 }
 
 h1,
