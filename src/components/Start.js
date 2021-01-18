@@ -4,7 +4,7 @@ import { StyleSheet, css } from "aphrodite";
 import startImage from "../images/start_game.jpg";
 
 const Start = ({
-  startGameHandler,
+  createGameHandler,
   nameInputChangeHandler,
   codeInputChangeHandler,
   joinGameHandler,
@@ -22,13 +22,14 @@ const Start = ({
       <img src={startImage} alt="" />
       <input
         className="name-input"
-        defaultValue="Choose a Username (required)"
+        defaultValue="Choose a Username..."
+        id="uInput"
         onFocus={(e) => (e.target.value = "")}
         onChange={nameInputChangeHandler}
       />
       <button
         className="se-button"
-        onClick={startGameHandler}
+        onClick={createGameHandler}
         style={{ marginTop: 5 }}
       >
         Create new room
@@ -37,7 +38,8 @@ const Start = ({
         <h2>Have a room code?</h2>
         <input
           className="name-input"
-          defaultValue="Enter room code"
+          defaultValue="Enter room code..."
+          id="cInput"
           onFocus={(e) => (e.target.value = "")}
           onChange={codeInputChangeHandler}
         />

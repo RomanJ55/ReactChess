@@ -34,7 +34,7 @@ const Game = ({ items, updateData }) => {
     });
   };
 
-  const startGameHandler = () => {
+  const createGameHandler = () => {
     if (playerName !== "") {
       const roomNumber = getRandomInt(10000000, 99999999);
       sessionStorage.setItem("tempRoom", roomNumber);
@@ -42,6 +42,16 @@ const Game = ({ items, updateData }) => {
       const client = { username: playerName, room: roomNumber };
 
       socket.emit("join", client);
+    } else {
+      const userInput = document.getElementById("uInput");
+      userInput.value = "Username required";
+      userInput.animate(
+        [
+          { opacity: 0, color: "#f00" },
+          { opacity: 1, color: "#f00" },
+        ],
+        2000
+      );
     }
   };
 
@@ -54,16 +64,41 @@ const Game = ({ items, updateData }) => {
         };
         socket.emit("joinExisting", client);
 
-        setGameRoom(JSON.parse(sessionStorage.getItem("tempRoom")));
+        socket.on("joinExisting", (data) => {
+          if (data === `${playerName} joined`) {
+            setGameRoom(JSON.parse(sessionStorage.getItem("tempRoom")));
+            socket.off("joinExisting");
 
-        socket.emit("gameStart");
-        socket.on("gameStart", (arg) => {
-          if (arg === "game started!") {
-            socket.off("gameStart");
-            updateData();
+            socket.emit("gameStart");
+            socket.on("gameStart", (arg) => {
+              if (arg === "game started!") {
+                socket.off("gameStart");
+                updateData();
+              }
+            });
+          } else {
+            const codeInput = document.getElementById("cInput");
+            codeInput.value = data;
+            codeInput.animate(
+              [
+                { opacity: 0, color: "#f00" },
+                { opacity: 1, color: "#f00" },
+              ],
+              2000
+            );
           }
         });
       }
+    } else {
+      const userInput = document.getElementById("uInput");
+      userInput.value = "Username required";
+      userInput.animate(
+        [
+          { opacity: 0, color: "#f00" },
+          { opacity: 1, color: "#f00" },
+        ],
+        2000
+      );
     }
   };
 
@@ -85,7 +120,7 @@ const Game = ({ items, updateData }) => {
   };
 
   const nameInputChangeHandler = (e) => {
-    setPlayerName(e.target.value);
+    setPlayerName(e.target.value.trim());
   };
 
   const codeInputChangeHandler = (e) => {
@@ -128,7 +163,7 @@ const Game = ({ items, updateData }) => {
         />
       ) : (
         <Start
-          startGameHandler={startGameHandler}
+          createGameHandler={createGameHandler}
           nameInputChangeHandler={nameInputChangeHandler}
           codeInputChangeHandler={codeInputChangeHandler}
           joinGameHandler={joinGameHandler}
