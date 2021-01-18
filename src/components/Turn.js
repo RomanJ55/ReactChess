@@ -10,7 +10,8 @@ const Turn = ({ turn }) => {
     },
   });
 
-  const turnText = `${turn} Turn`;
+  const turnText =
+    turn === "not started" ? "waiting for player..." : `${turn} Turn`;
   return <h2 className={css(styles.bounce)}>{turnText.toUpperCase()}</h2>;
 };
 

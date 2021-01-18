@@ -35,13 +35,17 @@ body {
     #f9b846,
     #ff9b00
   );
+  font-style: oblique;
+  color: chocolate;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .gu-button {
-  width: 100px;
+  width: 150px;
   height: 40px;
   font-size: 20px;
-  background: repeating-linear-gradient(45deg, #b1b1b1, transparent 100px);
+  background: repeating-linear-gradient(45deg, #b1b1b1, transparent 150px);
   -webkit-text-stroke-width: 0.3px;
 }
 
@@ -109,9 +113,22 @@ header img {
   width: 100px;
 }
 
-.top-timer {
+.top-area {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.name-input {
+  height: 40px;
+  color: orange;
+  text-align: center;
+  border-style: inset;
+  font-size: 24px;
+}
+
+.start-footer {
+  display: grid;
+  margin-top: 20px;
 }
 
 h1,

@@ -11,6 +11,10 @@ const Game = ({ items, updateData }) => {
   const [turn, setTurn] = useState([]);
   const [running, setRunning] = useState([]);
   const [winner, setWinner] = useState([]);
+  const [playerName, setPlayerName] = useState("");
+  const [gameRoom, setGameRoom] = useState(
+    JSON.parse(sessionStorage.getItem("tempRoom"))
+  );
   // const [selectedSquare, setSelectedSquare] = useState(-1);
 
   useEffect(() => {
@@ -19,13 +23,6 @@ const Game = ({ items, updateData }) => {
     setRunning(items.game_running);
     setWinner(items.is_winner);
   }, [items.board, items.turn, items.game_running, items.is_winner]);
-
-  if (localStorage.getItem("b_time") === null) {
-    localStorage.setItem("b_time", JSON.stringify(items.timer));
-  }
-  if (localStorage.getItem("w_time") === null) {
-    localStorage.setItem("w_time", JSON.stringify(items.timer + 2));
-  }
 
   const giveUpHandler = () => {
     socket.emit("gameEnd");
@@ -38,36 +35,78 @@ const Game = ({ items, updateData }) => {
   };
 
   const startGameHandler = () => {
-    const getRandomInt = (min, max) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min)) + min;
-    };
-    const roomNumber = getRandomInt(1, 999);
+    if (playerName !== "") {
+      const getRandomInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+      };
+      const roomNumber = getRandomInt(1000000, 9999999);
+      sessionStorage.setItem("tempRoom", roomNumber);
+      setGameRoom(roomNumber);
+      const client = { username: playerName, room: roomNumber };
 
-    const client = { username: "RomJ", room: `abc${roomNumber}` };
+      socket.emit("join", client);
+    }
+  };
 
-    socket.emit("join", client);
-    socket.emit("gameStart");
-    socket.on("gameStart", (arg) => {
-      if (arg === "game started!") {
-        socket.off("gameStart");
-        updateData();
+  const joinGameHandler = () => {
+    if (playerName !== "") {
+      if (sessionStorage.getItem("tempRoom") !== "") {
+        const client = {
+          username: playerName,
+          room: sessionStorage.getItem("tempRoom"),
+        };
+        socket.emit("joinExisting", client);
+
+        setGameRoom(JSON.parse(sessionStorage.getItem("tempRoom")));
+
+        socket.emit("gameStart");
+        socket.on("gameStart", (arg) => {
+          if (arg === "game started!") {
+            socket.off("gameStart");
+            updateData();
+          }
+        });
       }
-    });
-    localStorage.removeItem("b_time");
-    localStorage.removeItem("w_time");
+    }
+  };
+
+  const leaveRoomHandler = () => {
+    socket.emit("leave", { username: playerName, room: gameRoom });
+    sessionStorage.removeItem("tempRoom");
+    setGameRoom(null);
+    updateData();
+  };
+
+  const restartGameHandler = () => {};
+
+  const nameInputChangeHandler = (e) => {
+    setPlayerName(e.target.value);
+  };
+
+  const codeInputChangeHandler = (e) => {
+    sessionStorage.setItem("tempRoom", e.target.value);
   };
 
   return (
     <>
-      {running ? (
+      {gameRoom !== null && running ? (
         <div className="game">
-          <div className="top-timer">
+          <div className="top-area">
+            <button
+              className="gu-button"
+              style={{ marginTop: 15 }}
+              onClick={leaveRoomHandler}
+            >
+              Leave Room
+            </button>
+            <h2>Room: {gameRoom}</h2>
             <Timer
               position="top"
               timeoutHandler={giveUpHandler}
-              run={turn === "white" ? false : true}
+              run={turn === "black" ? true : false}
+              timer={items.timer}
             />
           </div>
           <Board
@@ -81,12 +120,22 @@ const Game = ({ items, updateData }) => {
             position="bottom"
             run={turn === "white" ? true : false}
             giveUpHandler={giveUpHandler}
+            timer={items.timer}
           />
         </div>
       ) : winner ? (
-        <End winner={items.winner} startGameHandler={startGameHandler} />
+        <End
+          winner={items.winner}
+          restartGameHandler={startGameHandler}
+          leaveRoomHandler={leaveRoomHandler}
+        />
       ) : (
-        <Start startGameHandler={startGameHandler} />
+        <Start
+          startGameHandler={startGameHandler}
+          nameInputChangeHandler={nameInputChangeHandler}
+          codeInputChangeHandler={codeInputChangeHandler}
+          joinGameHandler={joinGameHandler}
+        />
       )}
     </>
   );

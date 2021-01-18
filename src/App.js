@@ -3,6 +3,7 @@ import { socket } from "./socket";
 import "./App.css";
 import Header from "./components/Header";
 import Game from "./components/Game";
+import Spinner from "./components/Spinner";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -28,13 +29,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      {isLoading ? (
-        <h3 className="center" style={{ marginTop: 200, fontSize: 40 }}>
-          Loading.....
-        </h3>
-      ) : (
-        <Game items={items} updateData={fetch} />
-      )}
+      {isLoading ? <Spinner /> : <Game items={items} updateData={fetch} />}
     </div>
   );
 }

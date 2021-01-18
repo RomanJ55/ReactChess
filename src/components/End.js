@@ -4,7 +4,7 @@ import { StyleSheet, css } from "aphrodite";
 import wWon from "../images/w_won.png";
 import bWon from "../images/b_won.png";
 
-const End = ({ winner, startGameHandler }) => {
+const End = ({ winner, restartGameHandler, leaveRoomHandler }) => {
   let winnerLabel = "Winner: " + winner;
   let st = "start";
 
@@ -25,8 +25,11 @@ const End = ({ winner, startGameHandler }) => {
         alt=""
         style={{ width: 320, padding: 3 }}
       />
-      <button className="se-button" onClick={startGameHandler}>
+      <button className="se-button" onClick={restartGameHandler}>
         Play again
+      </button>
+      <button className="se-button" onClick={leaveRoomHandler}>
+        Leave room
       </button>
     </div>
   );
