@@ -20,6 +20,10 @@ body {
   background-attachment: fixed;
 }
 
+#root {
+  display: flex;
+}
+
 .container {
   margin: auto;
   padding: 0 20px;
@@ -79,7 +83,8 @@ body {
 }
 
 .board {
-  width: 715px;
+  width: 735px;
+  padding: 10px;
 }
 
 .square {
@@ -105,6 +110,11 @@ body {
   align-items: center;
 }
 
+.start img {
+  max-width: 700px;
+  justify-self: center;
+}
+
 header {
   height: 65px;
 }
@@ -116,6 +126,7 @@ header img {
 .top-area {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .name-input {
@@ -124,6 +135,7 @@ header img {
   text-align: center;
   border-style: inset;
   font-size: 24px;
+  margin-top: 10px;
 }
 
 .start-footer {
@@ -165,4 +177,128 @@ h3 {
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
+}
+
+@media only screen and (max-width: 992px) {
+  /* .start img {
+    width: 500px;
+  } */
+
+  .start {
+    width: 600px;
+    height: 500px;
+  }
+
+  .start h2 {
+    font-size: 24px;
+  }
+
+  header img {
+    width: 80px;
+  }
+
+  .game {
+    margin-top: 0px;
+    padding: 0 50px;
+  }
+
+  .game h2,
+  h3 {
+    font-size: 1.1em;
+  }
+
+  .board {
+    width: 600px;
+  }
+
+  .square {
+    width: 70px;
+    height: 70px;
+  }
+
+  .square img {
+    width: 46px;
+    height: 50px;
+  }
+
+  .gu-button {
+    width: 100px;
+    font-size: 14px;
+    height: 20px;
+  }
+
+  .se-button {
+    font-size: 40px;
+  }
+
+  .name-input {
+    font-size: 20px;
+    margin-top: 3px;
+  }
+
+  .center {
+    width: 600px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .start img {
+    width: 300px;
+  }
+
+  .start {
+    width: 300px;
+    height: 400px;
+  }
+
+  .start h2 {
+    font-size: 20px;
+  }
+
+  header img {
+    width: 50px;
+  }
+
+  .game {
+    margin-top: 0px;
+    padding: 0 35px;
+  }
+
+  .game h2,
+  h3 {
+    font-size: 0.8em;
+  }
+
+  .board {
+    width: 350px;
+  }
+
+  .square {
+    width: 42px;
+    height: 42px;
+  }
+
+  .square img {
+    width: 22px;
+    height: 27px;
+  }
+
+  .gu-button {
+    width: 80px;
+    font-size: 12px;
+    height: 20px;
+  }
+
+  .se-button {
+    font-size: 30px;
+  }
+
+  .name-input {
+    font-size: 14px;
+    margin-top: 3px;
+  }
+
+  .center {
+    width: 300px;
+  }
 }

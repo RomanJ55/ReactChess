@@ -17,13 +17,11 @@ const End = ({ winner, restartGameHandler, leaveRoomHandler }) => {
 
   return (
     <div className={[css(styles.bounce), st].join(" ")}>
-      <h1 className="center" style={{ fontSize: 50 }}>
-        {winnerLabel.toUpperCase()}
-      </h1>
+      <h1 className="center">{winnerLabel.toUpperCase()}</h1>
       <img
         src={winner === "white" ? wWon : bWon}
         alt=""
-        style={{ width: 320, padding: 3 }}
+        style={{ padding: 3 }}
       />
       <button className="se-button" onClick={restartGameHandler}>
         Play again

@@ -97,11 +97,7 @@ const Game = ({ items, updateData }) => {
       {gameRoom !== null && running ? (
         <div className="game">
           <div className="top-area">
-            <button
-              className="gu-button"
-              style={{ marginTop: 15 }}
-              onClick={leaveRoomHandler}
-            >
+            <button className="gu-button" onClick={leaveRoomHandler}>
               Leave Room
             </button>
             <h2>Room: {gameRoom}</h2>

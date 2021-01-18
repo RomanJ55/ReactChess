@@ -19,13 +19,12 @@ const Start = ({
 
   return (
     <div className={[css(styles.bounce), st].join(" ")}>
-      <img src={startImage} style={{ width: 700 }} alt="" />
+      <img src={startImage} alt="" />
       <input
         className="name-input"
         defaultValue="Choose a Username (required)"
         onFocus={(e) => (e.target.value = "")}
         onChange={nameInputChangeHandler}
-        style={{ marginTop: 20 }}
       />
       <button
         className="se-button"
