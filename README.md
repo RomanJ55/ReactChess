@@ -4,7 +4,8 @@ Using my own Python-Chess game project as the backend
 
 - https://github.com/RomanJ55/Chess-Game
 
-Added Flask and gunicorn for the server/api
+Added Flask and gunicorn for the server
+Added SocketIO for real time data tranfer/exchange between clients
 
 - backend repo: https://github.com/RomanJ55/backend (hosted on heroku)
 
@@ -19,8 +20,7 @@ Fully functional chess game following the standard chess rules: https://en.wikip
 
 Not working:
 
-- en passant moves https://support.chess.com/article/683-what-is-en-passant
-  (I didn't know they existed...)
+- Timers, Restart game button -- fix coming very soon
 
 ---
 
