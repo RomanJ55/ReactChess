@@ -29,5 +29,11 @@ Fully functional chess game following the standard chess rules: https://en.wikip
 - Sounds, AI
 
 ---
+Start screen + waiting screen:
 
-![Start_screen](assets/001.jpg "Start_screen")
+![Start_screen](assets/002.jpg "Start_screen")
+
+---
+Game running:
+
+![Running](assets/001.jpg "running")
