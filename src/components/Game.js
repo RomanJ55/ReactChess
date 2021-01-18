@@ -5,6 +5,7 @@ import Board from "./Board";
 import Footer from "./Footer";
 import End from "./End";
 import Start from "./Start";
+import { getRandomInt } from "../utils";
 
 const Game = ({ items, updateData }) => {
   const [squares, setSquares] = useState([[]]);
@@ -15,7 +16,6 @@ const Game = ({ items, updateData }) => {
   const [gameRoom, setGameRoom] = useState(
     JSON.parse(sessionStorage.getItem("tempRoom"))
   );
-  // const [selectedSquare, setSelectedSquare] = useState(-1);
 
   useEffect(() => {
     setSquares(items.board);
@@ -36,12 +36,7 @@ const Game = ({ items, updateData }) => {
 
   const startGameHandler = () => {
     if (playerName !== "") {
-      const getRandomInt = (min, max) => {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
-      };
-      const roomNumber = getRandomInt(1000000, 9999999);
+      const roomNumber = getRandomInt(10000000, 99999999);
       sessionStorage.setItem("tempRoom", roomNumber);
       setGameRoom(roomNumber);
       const client = { username: playerName, room: roomNumber };
@@ -79,7 +74,15 @@ const Game = ({ items, updateData }) => {
     updateData();
   };
 
-  const restartGameHandler = () => {};
+  const restartGameHandler = () => {
+    socket.emit("restart");
+    socket.on("restart", (data) => {
+      if (data === "game restarted") {
+        socket.off("restart");
+        updateData();
+      }
+    });
+  };
 
   const nameInputChangeHandler = (e) => {
     setPlayerName(e.target.value);
@@ -103,7 +106,6 @@ const Game = ({ items, updateData }) => {
             </button>
             <h2>Room: {gameRoom}</h2>
             <Timer
-              position="top"
               timeoutHandler={giveUpHandler}
               run={turn === "black" ? true : false}
               timer={items.timer}
@@ -117,7 +119,6 @@ const Game = ({ items, updateData }) => {
           />
           <Footer
             turn={turn}
-            position="bottom"
             run={turn === "white" ? true : false}
             giveUpHandler={giveUpHandler}
             timer={items.timer}
@@ -126,7 +127,7 @@ const Game = ({ items, updateData }) => {
       ) : winner ? (
         <End
           winner={items.winner}
-          restartGameHandler={startGameHandler}
+          restartGameHandler={restartGameHandler}
           leaveRoomHandler={leaveRoomHandler}
         />
       ) : (

@@ -14,13 +14,6 @@ Added SocketIO for real time data tranfer/exchange between clients
 Fully functional chess game following the standard chess rules: https://en.wikipedia.org/wiki/Rules_of_chess
 
 - Time is set to 15 Minutes by default
-- Timers persist through refresh
-
----
-
-Not working:
-
-- Timers, Restart game button -- fix coming very soon
 
 ---
 
@@ -33,8 +26,7 @@ Not working:
 
 # Future todos:
 
-- Sounds
-- AI
+- Sounds, AI
 
 ---
 

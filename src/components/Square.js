@@ -1,6 +1,6 @@
 import React from "react";
 import { socket } from "../socket";
-import { zoomIn, zoomInDown, rubberBand } from "react-animations";
+import { zoomIn, zoomInDown } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
 
 const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
@@ -28,10 +28,6 @@ const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
     zoomImg: {
       animationName: zoomInDown,
       animationDuration: "2.5s",
-    },
-    selectedAnimation: {
-      animationName: rubberBand,
-      animationDuration: "1.1s",
     },
   });
 
