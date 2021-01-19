@@ -16,19 +16,22 @@ const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
       if (arg === "Done!") {
         socket.off("clicked");
         updateData();
+      } else {
+        const turnDisplay = document.getElementById("turnDisplay");
+        turnDisplay.animate(
+          [
+            { opacity: 0, color: "#f00" },
+            { opacity: 1, color: "#f00" },
+          ],
+          2000
+        );
       }
     });
   };
 
   const styles = StyleSheet.create({
-    zoom: {
-      animationName: zoomIn,
-      animationDuration: "3s",
-    },
-    zoomImg: {
-      animationName: zoomInDown,
-      animationDuration: "2.5s",
-    },
+    zoom: { animationName: zoomIn, animationDuration: "3s" },
+    zoomImg: { animationName: zoomInDown, animationDuration: "2.5s" },
   });
 
   return (

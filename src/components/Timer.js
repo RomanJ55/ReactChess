@@ -20,10 +20,7 @@ const Timer = ({ timeoutHandler, run, timer }) => {
   }, [isOn, time, run]);
 
   const styles = StyleSheet.create({
-    slide: {
-      animationName: zoomInRight,
-      animationDuration: "2.6s",
-    },
+    slide: { animationName: zoomInRight, animationDuration: "2.6s" },
   });
 
   if (time >= 0) {

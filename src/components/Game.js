@@ -35,15 +35,31 @@ const Game = ({ items, updateData }) => {
   };
 
   const createGameHandler = () => {
+    const userInput = document.getElementById("uInput");
     if (playerName !== "") {
       const roomNumber = getRandomInt(10000000, 99999999);
       sessionStorage.setItem("tempRoom", roomNumber);
-      setGameRoom(roomNumber);
+
       const client = { username: playerName, room: roomNumber };
 
       socket.emit("join", client);
+      socket.on("join", (joinData) => {
+        console.log(joinData);
+        if (joinData === "joined") {
+          setGameRoom(roomNumber);
+        } else {
+          userInput.value = joinData;
+          userInput.animate(
+            [
+              { opacity: 0, color: "#f00" },
+              { opacity: 1, color: "#f00" },
+            ],
+            2000
+          );
+        }
+        socket.off("join");
+      });
     } else {
-      const userInput = document.getElementById("uInput");
       userInput.value = "Username required";
       userInput.animate(
         [
@@ -65,9 +81,18 @@ const Game = ({ items, updateData }) => {
         socket.emit("joinExisting", client);
 
         socket.on("joinExisting", (data) => {
-          if (data === `${playerName} joined`) {
+          if (data === "Username already exists") {
+            const userInput = document.getElementById("uInput");
+            userInput.value = data;
+            userInput.animate(
+              [
+                { opacity: 0, color: "#f00" },
+                { opacity: 1, color: "#f00" },
+              ],
+              2000
+            );
+          } else if (data === `${playerName} joined`) {
             setGameRoom(JSON.parse(sessionStorage.getItem("tempRoom")));
-            socket.off("joinExisting");
 
             socket.emit("gameStart");
             socket.on("gameStart", (arg) => {
@@ -87,6 +112,7 @@ const Game = ({ items, updateData }) => {
               2000
             );
           }
+          socket.off("joinExisting");
         });
       }
     } else {

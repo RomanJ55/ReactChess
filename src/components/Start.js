@@ -11,10 +11,7 @@ const Start = ({
 }) => {
   const st = "start";
   const styles = StyleSheet.create({
-    bounce: {
-      animationName: bounceIn,
-      animationDuration: "0.8s",
-    },
+    bounce: { animationName: bounceIn, animationDuration: "0.8s" },
   });
 
   return (
