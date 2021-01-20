@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import End from "./End";
 import Start from "./Start";
 import { getRandomInt } from "../utils";
+import spinner from "../images/spinner.gif";
 
 const Game = ({ items, updateData }) => {
   const [squares, setSquares] = useState([[]]);
@@ -161,7 +162,10 @@ const Game = ({ items, updateData }) => {
             <button className="gu-button" onClick={leaveRoomHandler}>
               Leave Room
             </button>
+            <h3>{playerName}</h3>
             <h2>Room: {gameRoom}</h2>
+            <img src={spinner} alt="waiting" id="spinner" />
+            {/* <h3>{playerName}</h3> */}
             <Timer
               timeoutHandler={giveUpHandler}
               run={turn === "black" ? true : false}

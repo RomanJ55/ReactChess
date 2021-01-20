@@ -18,7 +18,7 @@ const End = ({ winner, restartGameHandler, leaveRoomHandler }) => {
       <img
         src={winner === "white" ? wWon : bWon}
         alt=""
-        style={{ padding: 3 }}
+        style={{ padding: 3, width: "auto" }}
       />
       <button className="se-button" onClick={restartGameHandler}>
         Play again
