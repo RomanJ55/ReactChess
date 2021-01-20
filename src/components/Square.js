@@ -2,8 +2,18 @@ import React from "react";
 import { socket } from "../socket";
 import { zoomIn, zoomInDown } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
+import { animateError } from "../utils";
 
-const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
+const Square = ({
+  j,
+  i,
+  imagePath,
+  type,
+  selected,
+  player,
+  playerName,
+  updateData,
+}) => {
   let cl = "square";
 
   const clickHandler = () => {
@@ -11,21 +21,16 @@ const Square = ({ j, i, imagePath, type, selected, player, updateData }) => {
       x: i,
       y: j,
       player: player,
+      name: playerName,
     });
     socket.on("clicked", (arg) => {
       if (arg === "Done!") {
-        socket.off("clicked");
         updateData();
       } else {
         const turnDisplay = document.getElementById("turnDisplay");
-        turnDisplay.animate(
-          [
-            { opacity: 0, color: "#f00" },
-            { opacity: 1, color: "#f00" },
-          ],
-          2000
-        );
+        animateError(turnDisplay, turnDisplay.innerHTML);
       }
+      socket.off("clicked");
     });
   };
 

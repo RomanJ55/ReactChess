@@ -78,7 +78,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 40px;
-  padding: 0 50px;
+  padding: 10px 50px;
   background-image: linear-gradient(
     to right top,
     #a52a2a,
@@ -124,7 +124,7 @@ header {
 }
 
 header img {
-  width: 100px;
+  width: 90px;
 }
 
 .top-area {
@@ -192,8 +192,8 @@ h3 {
 }
 
 .clock {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   margin: 0px 10px;
 }
 
@@ -202,7 +202,7 @@ h3 {
   align-items: center;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991.98px) {
   .start h2 {
     font-size: 24px;
   }
@@ -212,12 +212,12 @@ h3 {
   }
 
   header img {
-    width: 80px;
+    width: 70px;
   }
 
   .game {
     margin-top: 0px;
-    padding: 0 35px;
+    padding: 8px 35px;
   }
 
   .game h2,
@@ -232,6 +232,11 @@ h3 {
   .square {
     width: 70px;
     height: 70px;
+  }
+
+  .square img {
+    width: 50px;
+    height: 55px;
   }
 
   .gu-button {
@@ -256,7 +261,7 @@ h3 {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 575.98px) {
   .start h2 {
     font-size: 20px;
   }
@@ -266,12 +271,12 @@ h3 {
   }
 
   header img {
-    width: 40px;
+    width: 50px;
   }
 
   .game {
     margin-top: 0px;
-    padding: 0 20px;
+    padding: 5px 20px;
   }
 
   .game h2,
@@ -320,6 +325,6 @@ h3 {
   }
 
   .top-area h3 {
-    font-size: 12px;
+    font-size: 0.6em;
   }
 }

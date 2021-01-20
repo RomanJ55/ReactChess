@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { socket } from "../socket";
-import Timer from "./Timer";
 import Board from "./Board";
 import Footer from "./Footer";
 import End from "./End";
 import Start from "./Start";
-import { getRandomInt } from "../utils";
-import spinner from "../images/spinner.gif";
+import { getRandomInt, animateError } from "../utils";
+import Top from "./Top";
 
 const Game = ({ items, updateData }) => {
   const [squares, setSquares] = useState([[]]);
@@ -17,6 +16,7 @@ const Game = ({ items, updateData }) => {
   const [gameRoom, setGameRoom] = useState(
     JSON.parse(sessionStorage.getItem("tempRoom"))
   );
+  const [roomData, setRoomData] = useState([]);
 
   useEffect(() => {
     setSquares(items.board);
@@ -25,6 +25,10 @@ const Game = ({ items, updateData }) => {
     setWinner(items.is_winner);
   }, [items.board, items.turn, items.game_running, items.is_winner]);
 
+  useEffect(() => {
+    getRoomData();
+  });
+
   const giveUpHandler = () => {
     socket.emit("gameEnd");
     socket.on("gameEnd", (arg) => {
@@ -32,6 +36,14 @@ const Game = ({ items, updateData }) => {
         socket.off("gameEnd");
         updateData();
       }
+    });
+  };
+
+  const getRoomData = () => {
+    socket.emit("roomData");
+    socket.on("roomData", (data) => {
+      socket.off("roomData");
+      setRoomData(data);
     });
   };
 
@@ -45,30 +57,15 @@ const Game = ({ items, updateData }) => {
 
       socket.emit("join", client);
       socket.on("join", (joinData) => {
-        console.log(joinData);
         if (joinData === "joined") {
           setGameRoom(roomNumber);
         } else {
-          userInput.value = joinData;
-          userInput.animate(
-            [
-              { opacity: 0, color: "#f00" },
-              { opacity: 1, color: "#f00" },
-            ],
-            2000
-          );
+          animateError(userInput, joinData);
         }
         socket.off("join");
       });
     } else {
-      userInput.value = "Username required";
-      userInput.animate(
-        [
-          { opacity: 0, color: "#f00" },
-          { opacity: 1, color: "#f00" },
-        ],
-        2000
-      );
+      animateError(userInput, "Username required");
     }
   };
 
@@ -84,14 +81,7 @@ const Game = ({ items, updateData }) => {
         socket.on("joinExisting", (data) => {
           if (data === "Username already exists") {
             const userInput = document.getElementById("uInput");
-            userInput.value = data;
-            userInput.animate(
-              [
-                { opacity: 0, color: "#f00" },
-                { opacity: 1, color: "#f00" },
-              ],
-              2000
-            );
+            animateError(userInput, data);
           } else if (data === `${playerName} joined`) {
             setGameRoom(JSON.parse(sessionStorage.getItem("tempRoom")));
 
@@ -104,28 +94,14 @@ const Game = ({ items, updateData }) => {
             });
           } else {
             const codeInput = document.getElementById("cInput");
-            codeInput.value = data;
-            codeInput.animate(
-              [
-                { opacity: 0, color: "#f00" },
-                { opacity: 1, color: "#f00" },
-              ],
-              2000
-            );
+            animateError(codeInput, data);
           }
           socket.off("joinExisting");
         });
       }
     } else {
       const userInput = document.getElementById("uInput");
-      userInput.value = "Username required";
-      userInput.animate(
-        [
-          { opacity: 0, color: "#f00" },
-          { opacity: 1, color: "#f00" },
-        ],
-        2000
-      );
+      animateError(userInput, "Username required");
     }
   };
 
@@ -158,24 +134,19 @@ const Game = ({ items, updateData }) => {
     <>
       {gameRoom !== null && running ? (
         <div className="game">
-          <div className="top-area">
-            <button className="gu-button" onClick={leaveRoomHandler}>
-              Leave Room
-            </button>
-            <h3>{playerName}</h3>
-            <h2>Room: {gameRoom}</h2>
-            <img src={spinner} alt="waiting" id="spinner" />
-            {/* <h3>{playerName}</h3> */}
-            <Timer
-              timeoutHandler={giveUpHandler}
-              run={turn === "black" ? true : false}
-              timer={items.timer}
-            />
-          </div>
+          <Top
+            leaveRoomHandler={leaveRoomHandler}
+            roomData={roomData}
+            gameRoom={gameRoom}
+            giveUpHandler={giveUpHandler}
+            turn={turn}
+            timer={items.timer}
+          />
           <Board
             squares={squares}
             rows={items.rows}
             columns={items.columns}
+            playerName={playerName}
             updateData={updateData}
           />
           <Footer

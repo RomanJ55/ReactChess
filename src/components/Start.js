@@ -23,6 +23,7 @@ const Start = ({
         id="uInput"
         onFocus={(e) => (e.target.value = "")}
         onChange={nameInputChangeHandler}
+        autoComplete="off"
       />
       <button
         className="se-button"
@@ -39,6 +40,7 @@ const Start = ({
           id="cInput"
           onFocus={(e) => (e.target.value = "")}
           onChange={codeInputChangeHandler}
+          autoComplete="off"
         />
         <button className="se-button" onClick={joinGameHandler}>
           Join a room
