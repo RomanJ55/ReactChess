@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { zoomInRight } from "react-animations";
 import { StyleSheet, css } from "aphrodite";
+import clock from "../images/clock.png";
+import clockTick from "../images/clock_tick.gif";
 
 const Timer = ({ timeoutHandler, run, timer }) => {
   const [time, setTime] = useState(timer);
   const [isOn, setIsOn] = useState(run);
+
+  const cl = "timer-area";
 
   useEffect(() => {
     setIsOn(run);
@@ -28,17 +32,28 @@ const Timer = ({ timeoutHandler, run, timer }) => {
     let seconds = time % 60;
 
     return seconds > 9 ? (
-      <h3 className={css(styles.slide)}>
-        Time: {minutes}:{seconds}
-      </h3>
+      <div className={[css(styles.slide), cl].join(" ")}>
+        <img src={isOn ? clockTick : clock} alt="Time" className="clock" />
+        <h3>
+          {minutes}:{seconds}
+        </h3>
+      </div>
     ) : (
-      <h3 className={css(styles.slide)}>
-        Time: {minutes}:0{seconds}
-      </h3>
+      <div className={[css(styles.slide), cl].join(" ")}>
+        <img src={isOn ? clockTick : clock} alt="Time" className="clock" />
+        <h3>
+          {minutes}:0{seconds}
+        </h3>
+      </div>
     );
   } else {
     timeoutHandler();
-    return <h3>Time: Times up!</h3>;
+    return (
+      <div className={cl}>
+        <img src={isOn ? clockTick : clock} alt="Time" className="clock" />
+        <h3>Times up!</h3>
+      </div>
+    );
   }
 };
 

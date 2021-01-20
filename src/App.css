@@ -63,6 +63,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 6px 0px;
 }
 
 .game {
@@ -71,7 +72,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 40px;
-  padding: 0 80px;
+  padding: 0 50px;
   background-image: linear-gradient(
     to right top,
     #a52a2a,
@@ -84,7 +85,7 @@ body {
 
 .board {
   width: 735px;
-  padding: 10px;
+  padding: 5px;
 }
 
 .square {
@@ -127,6 +128,7 @@ header img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 6px 0px;
 }
 
 .name-input {
@@ -177,6 +179,19 @@ h3 {
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.clock {
+  width: 45px;
+  height: 45px;
+  margin: 0px 10px;
+}
+
+.timer-area {
+  display: flex;
+  align-items: center;
 }
 
 @media only screen and (max-width: 992px) {
@@ -199,7 +214,7 @@ h3 {
 
   .game {
     margin-top: 0px;
-    padding: 0 50px;
+    padding: 0 35px;
   }
 
   .game h2,
@@ -239,6 +254,12 @@ h3 {
   .center {
     width: 600px;
   }
+
+  .clock {
+    width: 35px;
+    height: 35px;
+    margin: 0px 8px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -256,12 +277,12 @@ h3 {
   }
 
   header img {
-    width: 50px;
+    width: 40px;
   }
 
   .game {
     margin-top: 0px;
-    padding: 0 35px;
+    padding: 0 20px;
   }
 
   .game h2,
@@ -299,6 +320,12 @@ h3 {
   }
 
   .center {
-    width: 300px;
+    width: 400px;
+  }
+
+  .clock {
+    width: 25px;
+    height: 25px;
+    margin: 0px 5px;
   }
 }
