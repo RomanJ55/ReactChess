@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/ReactChess/static/css/main.ccb959e9.chunk.css",
-    "main.js": "/ReactChess/static/js/main.680322ae.chunk.js",
-    "main.js.map": "/ReactChess/static/js/main.680322ae.chunk.js.map",
+    "main.css": "/ReactChess/static/css/main.0430b478.chunk.css",
+    "main.js": "/ReactChess/static/js/main.1eb7f138.chunk.js",
+    "main.js.map": "/ReactChess/static/js/main.1eb7f138.chunk.js.map",
     "runtime-main.js": "/ReactChess/static/js/runtime-main.b178bbdf.js",
     "runtime-main.js.map": "/ReactChess/static/js/runtime-main.b178bbdf.js.map",
     "static/js/2.6c6efc80.chunk.js": "/ReactChess/static/js/2.6c6efc80.chunk.js",
     "static/js/2.6c6efc80.chunk.js.map": "/ReactChess/static/js/2.6c6efc80.chunk.js.map",
     "index.html": "/ReactChess/index.html",
-    "static/css/main.ccb959e9.chunk.css.map": "/ReactChess/static/css/main.ccb959e9.chunk.css.map",
+    "static/css/main.0430b478.chunk.css.map": "/ReactChess/static/css/main.0430b478.chunk.css.map",
     "static/js/2.6c6efc80.chunk.js.LICENSE.txt": "/ReactChess/static/js/2.6c6efc80.chunk.js.LICENSE.txt",
     "static/media/b_won.b15e077a.png": "/ReactChess/static/media/b_won.b15e077a.png",
     "static/media/chess.5b7e3715.png": "/ReactChess/static/media/chess.5b7e3715.png",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.b178bbdf.js",
     "static/js/2.6c6efc80.chunk.js",
-    "static/css/main.ccb959e9.chunk.css",
-    "static/js/main.680322ae.chunk.js"
+    "static/css/main.0430b478.chunk.css",
+    "static/js/main.1eb7f138.chunk.js"
   ]
 }
