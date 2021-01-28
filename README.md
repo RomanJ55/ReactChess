@@ -1,3 +1,7 @@
+## ! ! !  Deprecated  ! ! ! 
+# Remake here: https://github.com/RomanJ55/chessremake
+## ! ! !  Deprecated  ! ! ! 
+
 # Online Chess Game with React as the frontend and Python in the backend https://romanj55.github.io/ReactChess/
 
 Using my own Python-Chess game project as the backend
